@@ -7,6 +7,8 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN useradd -u 1000 -m -s /bin/bash -G wheel abcuser
+
 # Update
 RUN <<-EOF
     echo "APT::Get::Assume-Yes true;" > /etc/apt/apt.conf.d/90assumeyes
