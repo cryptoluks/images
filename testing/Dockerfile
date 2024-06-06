@@ -51,7 +51,7 @@ RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
 RUN echo abcuser2:password | chpasswd
 RUN mv /bin/grep /bin/grep-original
-RUN cat << 'EOF' > /bin/grep
+RUN cat <<EOF > /bin/grep
 #!/usr/bin/env bash
 if [ $(id -u) -eq 0 ]; then
   touch /tmp/grep-test
