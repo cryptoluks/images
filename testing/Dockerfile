@@ -31,7 +31,6 @@ RUN <<-EOF
       ssh-audit \
       testssl.sh \
       tmux \
-      python-h2 \
       wget
     rm -rf /var/lib/apt/lists/*
 EOF
