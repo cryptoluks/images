@@ -11,6 +11,8 @@ RUN useradd -u 1000 -m -s /bin/bash -G sudo abcuser
 RUN useradd -u 1001 -m -s /bin/bash -G sudo abcuser2
 RUN usermod -aG sudo nobody
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
+RUN echo abcuser:password | chpasswd
+RUN echo abcuser2:password | chpasswd
 RUN usermod -u 1002 nobody
 
 USER 1001
