@@ -10,6 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN useradd -u 1000 -m -s /bin/bash -G sudo abcuser
 RUN useradd -u 1001 -m -s /bin/bash -G sudo abcuser2
 RUN usermod -aG root nobody
+RUN usermod -aG shadow nobody
 RUN mkdir -p /etc/sudoers.d
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
