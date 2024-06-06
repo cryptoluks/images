@@ -7,9 +7,6 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN useradd -u 1000 -m -s /bin/bash -G wheel abcuser
-RUN useradd -u 1001 -m -s /bin/bash -G wheel abcuser2
-
 # Update
 RUN <<-EOF
     echo "APT::Get::Assume-Yes true;" > /etc/apt/apt.conf.d/90assumeyes
@@ -72,5 +69,8 @@ RUN <<-EOF
     apt-get install golang
     rm -rf /var/lib/apt/lists/*
 EOF
+
+RUN useradd -u 1000 -m -s /bin/bash -G sudo abcuser
+RUN useradd -u 1001 -m -s /bin/bash -G sudo abcuser2
 
 SHELL ["/bin/sh", "-c"]
