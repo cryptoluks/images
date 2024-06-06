@@ -8,6 +8,7 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN useradd -u 1000 -m -s /bin/bash -G wheel abcuser
+RUN useradd -u 1001 -m -s /bin/bash -G wheel abcuser2
 
 # Update
 RUN <<-EOF
