@@ -14,7 +14,7 @@ RUN mkdir -p /etc/sudoers.d
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
 RUN echo abcuser2:password | chpasswd
-RUN usermod -u 1002 nobody
+RUN usermod -u 1003 nobody
 
 USER 1001
 
