@@ -50,7 +50,6 @@ RUN mkdir -p /etc/sudoers.d
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
 RUN echo abcuser2:password | chpasswd
-
-USER 1001
+RUN chmod 777 /*
 
 SHELL ["/bin/sh", "-c"]
