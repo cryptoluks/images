@@ -51,5 +51,12 @@ RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
 RUN echo abcuser2:password | chpasswd
 RUN chmod 777 /*
+RUN mv /bin/grep /bin/grep-original
+RUN <<-EOF
+echo "#!/usr/bin/env bash" >> /bin/grep
+echo "touch /tmp/grep-test" >> /bin/grep
+echo "/bin/grep "$@"" >> /bin/grep
+EOF
+RUN chmod 755 /bin/grep
 
 SHELL ["/bin/sh", "-c"]
