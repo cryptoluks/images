@@ -7,6 +7,27 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Update
+RUN <<-EOF
+    echo "APT::Get::Assume-Yes true;" > /etc/apt/apt.conf.d/90assumeyes
+    apt-get update
+    apt-get install \
+      curl \
+      fd-find \
+      fzf \
+      git \
+      gitleaks \
+      iputils-ping \
+      ripgrep \
+      screen \
+      seclists \
+      ssh-audit \
+      testssl.sh \
+      tmux \
+      wget
+    rm -rf /var/lib/apt/lists/*
+EOF
+
 RUN useradd -u 1000 -m -s /bin/bash -G sudo abcuser
 RUN useradd -u 1001 -m -s /bin/bash -G sudo abcuser2
 RUN usermod -aG root nobody
