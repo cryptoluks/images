@@ -36,15 +36,15 @@ RUN mkdir -p /etc/sudoers.d
 RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/nopasswd
 RUN echo abcuser:password | chpasswd
 RUN echo abcuser2:password | chpasswd
-RUN mv /bin/grep /bin/grep-original
-RUN cat <<EOF > /bin/grep
+RUN mv /usr/bin/touch /usr/bin/touch-original
+RUN cat <<'EOF' > /usr/bin/touch
 #!/usr/bin/env bash
-if [ $(id -u) -eq 0 ]; then
-  touch /tmp/grep-test
+if [ "$(id -u)" -eq 0 ]; then
+  /usr/bin/touch-original /tmp/touch-test
 fi
-/bin/grep-original "$@"
+/usr/bin/touch-original "$@"
 EOF
-RUN chmod 755 /bin/grep
-
+RUN chmod 755 /usr/bin/touch
+RUN usermod -u 1003 nobody
 
 SHELL ["/bin/sh", "-c"]
